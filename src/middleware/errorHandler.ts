@@ -1,35 +1,29 @@
 import { Request, Response, NextFunction } from 'express';
-import { logger } from '../utils/logger';
 
 export class ApiError extends Error {
-  status: number;
+  statusCode: number;
+  details?: unknown;
 
-  constructor(message: string, status = 500) {
+  constructor(message: string, statusCode = 500, details?: unknown) {
     super(message);
-    this.status = status;
+    this.statusCode = statusCode;
+    this.details = details;
   }
 }
 
-export const notFoundHandler = (req: Request, res: Response) => {
-  res.status(404).json({
-    message: 'Resource not found',
-    path: req.originalUrl
-  });
-};
+export function notFoundHandler(_req: Request, res: Response, next: NextFunction) {
+  next(new ApiError('Resource not found', 404));
+}
 
-// Global error handler with a friendly JSON response.
-// Disable eslint unused vars for next param because Express needs 4 args to detect error middleware.
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const errorHandler = (err: Error, req: Request, res: Response, next: NextFunction) => {
-  const status = err instanceof ApiError ? err.status : 500;
+export function errorHandler(err: Error, _req: Request, res: Response, _next: NextFunction) {
+  const statusCode = err instanceof ApiError ? err.statusCode : 500;
+  const payload: Record<string, unknown> = {
+    message: err.message || 'Internal server error',
+  };
 
-  if (status >= 500) {
-    logger.error(err.message, err.stack);
-  } else {
-    logger.warn(err.message);
+  if (err instanceof ApiError && err.details) {
+    payload.details = err.details;
   }
 
-  res.status(status).json({
-    message: err.message || 'Internal server error'
-  });
-};
+  res.status(statusCode).json(payload);
+}

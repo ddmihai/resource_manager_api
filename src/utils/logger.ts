@@ -1,6 +1,6 @@
-// Simple console-based logger; swap out with a real logger if needed.
+/* Simple console-based logger to centralize logging */
 export const logger = {
-  info: (...args: unknown[]) => console.log('[INFO]', ...args),
-  warn: (...args: unknown[]) => console.warn('[WARN]', ...args),
-  error: (...args: unknown[]) => console.error('[ERROR]', ...args)
+  info: (message: string, ...meta: unknown[]) => console.log(`[INFO] ${message}`, ...meta),
+  warn: (message: string, ...meta: unknown[]) => console.warn(`[WARN] ${message}`, ...meta),
+  error: (message: string, ...meta: unknown[]) => console.error(`[ERROR] ${message}`, ...meta),
 };

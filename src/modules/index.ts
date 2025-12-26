@@ -1,14 +1,10 @@
 import { Router } from 'express';
-import healthRoutes from './health/routes';
-import resourceRouter from './ressources/routes/ressource.routes';
+import healthRouter from './health/routes/health.routes';
+import storageRouter from './storage/routes/storage.routes';
 
 const router = Router();
 
-// Mount module routers
-router.use('/health', healthRoutes);
-
-// resource routes
-router.use('/api', resourceRouter);
-
+router.use('/health', healthRouter);
+router.use('/storage', storageRouter);
 
 export default router;

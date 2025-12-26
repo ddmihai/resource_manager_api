@@ -15,8 +15,8 @@ app.use((0, cors_1.default)());
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
 app.use((0, morgan_1.default)('dev'));
-app.get('/', (_req, res) => {
-    res.json({ message: 'API is running' });
+app.get('/health', (_req, res) => {
+    res.json({ status: 'ok' });
 });
 app.use('/api', modules_1.default);
 app.use(errorHandler_1.notFoundHandler);

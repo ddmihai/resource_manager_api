@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.logger = void 0;
-// Simple console-based logger; swap out with a real logger if needed.
+/* Simple console-based logger to centralize logging */
 exports.logger = {
-    info: (...args) => console.log('[INFO]', ...args),
-    warn: (...args) => console.warn('[WARN]', ...args),
-    error: (...args) => console.error('[ERROR]', ...args)
+    info: (message, ...meta) => console.log(`[INFO] ${message}`, ...meta),
+    warn: (message, ...meta) => console.warn(`[WARN] ${message}`, ...meta),
+    error: (message, ...meta) => console.error(`[ERROR] ${message}`, ...meta),
 };
 //# sourceMappingURL=logger.js.map

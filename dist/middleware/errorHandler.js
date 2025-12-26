@@ -1,35 +1,27 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.errorHandler = exports.notFoundHandler = exports.ApiError = void 0;
-const logger_1 = require("../utils/logger");
+exports.ApiError = void 0;
+exports.notFoundHandler = notFoundHandler;
+exports.errorHandler = errorHandler;
 class ApiError extends Error {
-    constructor(message, status = 500) {
+    constructor(message, statusCode = 500, details) {
         super(message);
-        this.status = status;
+        this.statusCode = statusCode;
+        this.details = details;
     }
 }
 exports.ApiError = ApiError;
-const notFoundHandler = (req, res) => {
-    res.status(404).json({
-        message: 'Resource not found',
-        path: req.originalUrl
-    });
-};
-exports.notFoundHandler = notFoundHandler;
-// Global error handler with a friendly JSON response.
-// Disable eslint unused vars for next param because Express needs 4 args to detect error middleware.
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const errorHandler = (err, req, res, next) => {
-    const status = err instanceof ApiError ? err.status : 500;
-    if (status >= 500) {
-        logger_1.logger.error(err.message, err.stack);
+function notFoundHandler(_req, res, next) {
+    next(new ApiError('Resource not found', 404));
+}
+function errorHandler(err, _req, res, _next) {
+    const statusCode = err instanceof ApiError ? err.statusCode : 500;
+    const payload = {
+        message: err.message || 'Internal server error',
+    };
+    if (err instanceof ApiError && err.details) {
+        payload.details = err.details;
     }
-    else {
-        logger_1.logger.warn(err.message);
-    }
-    res.status(status).json({
-        message: err.message || 'Internal server error'
-    });
-};
-exports.errorHandler = errorHandler;
+    res.status(statusCode).json(payload);
+}
 //# sourceMappingURL=errorHandler.js.map

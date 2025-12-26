@@ -7,7 +7,7 @@ const zod_1 = require("zod");
 const envSchema = zod_1.z.object({
     NODE_ENV: zod_1.z.enum(['development', 'test', 'production']).default('development'),
     PORT: zod_1.z.coerce.number().int().positive().default(3000),
-    MONGO_URI: zod_1.z.string().min(1),
+    MONGO_URI: zod_1.z.string().min(1, 'MONGO_URI is required'),
 });
 const parsed = envSchema.safeParse(process.env);
 if (!parsed.success) {

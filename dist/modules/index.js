@@ -4,9 +4,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
-const routes_1 = __importDefault(require("./health/routes"));
+const health_routes_1 = __importDefault(require("./health/routes/health.routes"));
+const storage_routes_1 = __importDefault(require("./storage/routes/storage.routes"));
 const router = (0, express_1.Router)();
-// Mount module routers
-router.use('/health', routes_1.default);
+router.use('/health', health_routes_1.default);
+router.use('/storage', storage_routes_1.default);
 exports.default = router;
 //# sourceMappingURL=index.js.map
