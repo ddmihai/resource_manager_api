@@ -5,11 +5,12 @@ import { ResourceService } from '../services/resource.service';
 
 export const editResource = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        // decostruct id from params
-        const { id } = req.params;
+        const resourceId = req.body.id;
+        const updateData = req.body;
 
-        // get all resources from service
-        const resource = await ResourceService.GetResourceById(id);
+        console.log(req.body);
+
+        const resource = await ResourceService.EditResource(resourceId, updateData);
 
         res.status(200).json({
             status: 'success',

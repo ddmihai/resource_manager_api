@@ -9,7 +9,9 @@ const helmet_1 = __importDefault(require("helmet"));
 const morgan_1 = __importDefault(require("morgan"));
 const modules_1 = __importDefault(require("./modules"));
 const errorHandler_1 = require("./middleware/errorHandler");
+const resources_routes_1 = __importDefault(require("./modules/resource/routes/resources.routes"));
 const app = (0, express_1.default)();
+app.set('trust proxy', 1);
 app.use((0, helmet_1.default)());
 app.use((0, cors_1.default)());
 app.use(express_1.default.json());
@@ -19,6 +21,7 @@ app.get('/health', (_req, res) => {
     res.json({ status: 'ok' });
 });
 app.use('/api', modules_1.default);
+app.use('/api/v1/resources', resources_routes_1.default);
 app.use(errorHandler_1.notFoundHandler);
 app.use(errorHandler_1.errorHandler);
 exports.default = app;

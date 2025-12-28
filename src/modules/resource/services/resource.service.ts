@@ -24,6 +24,10 @@ export const ResourceService = {
             throw new ApiError('Invalid resource id', 400);
         }
 
+        const exists = await Resource.exists({ _id: id });
+        console.log('exists?', exists);
+
+
         // ✅ allow only editable fields (prevents accidental updates)
         const update: Partial<IResource> = {};
         if (data.name !== undefined) update.name = data.name.trim().toLowerCase();
@@ -43,10 +47,12 @@ export const ResourceService = {
         delete (update as any).updatedAt;
         delete (update as any).id;
 
+        console.log(id)
         const resource = await Resource.findByIdAndUpdate(id, update, {
             new: true,
             runValidators: true, // ✅ IMPORTANT
         }).lean<IResource | null>();
+
 
         if (!resource) {
             throw new ApiError('Resource not found', 404);
