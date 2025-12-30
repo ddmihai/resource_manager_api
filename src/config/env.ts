@@ -11,6 +11,7 @@ const envSchema = z.object({
   // admin credentials for initial setup
   ADMIN_EMAIL: z.string().email().min(1, 'ADMIN_EMAIL is required'),
   ADMIN_PASSWORD: z.string().min(6, 'ADMIN_PASSWORD must be at least 6 characters long'),
+  JWT_ACCESS_TOKEN_SECRET: z.string().min(1, 'JWT_ACCESS_TOKEN_SECRET is required'),
 });
 
 const parsed = envSchema.safeParse(process.env);

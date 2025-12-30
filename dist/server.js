@@ -6,12 +6,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const app_1 = __importDefault(require("./app"));
 const env_1 = require("./config/env");
 const automaticCreateResource_1 = require("./modules/resource/scripts/automaticCreateResource");
+const automaticallyCreateStorage_1 = require("./modules/storage/scripts/automaticallyCreateStorage");
+const createAdmin_1 = require("./modules/users/scripts/createAdmin");
 const database_1 = require("./utils/database");
 const logger_1 = require("./utils/logger");
 async function bootstrap() {
     try {
         await (0, database_1.connectDB)();
         await (0, automaticCreateResource_1.createAutomaticallyRessource)();
+        await (0, automaticallyCreateStorage_1.seedStorageBlueprintsOnStartup)();
+        await (0, createAdmin_1.createAdminAtStartup)();
         const server = app_1.default.listen(env_1.env.PORT, () => {
             logger_1.logger.info(`Server listening on http://localhost:${env_1.env.PORT}`);
         });

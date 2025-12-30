@@ -1,8 +1,8 @@
-import { Document } from 'mongoose';
+import { HydratedDocument, Types } from "mongoose";
 
 export interface IUser {
     fullName: string;
-    role: 'admin' | 'user';
+    role: "admin" | "user";
     email: string;
     password: string;
     avatar: string;
@@ -12,7 +12,10 @@ export interface IUser {
     updatedAt?: Date;
 }
 
-
-export interface IUserDocument extends IUser, Document {
+// Document type (includes mongoose fields + methods)
+export type IUserDocument = HydratedDocument<IUser> & {
     comparePassword(candidate: string): Promise<boolean>;
-}
+};
+
+// Optional: safe response type for API
+export type UserSafe = Omit<IUser, "password"> & { id: string };

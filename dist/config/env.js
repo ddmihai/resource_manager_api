@@ -8,6 +8,9 @@ const envSchema = zod_1.z.object({
     NODE_ENV: zod_1.z.enum(['development', 'test', 'production']).default('development'),
     PORT: zod_1.z.coerce.number().int().positive().default(3000),
     MONGO_URI: zod_1.z.string().min(1, 'MONGO_URI is required'),
+    // admin credentials for initial setup
+    ADMIN_EMAIL: zod_1.z.string().email().min(1, 'ADMIN_EMAIL is required'),
+    ADMIN_PASSWORD: zod_1.z.string().min(6, 'ADMIN_PASSWORD must be at least 6 characters long'),
 });
 const parsed = envSchema.safeParse(process.env);
 if (!parsed.success) {

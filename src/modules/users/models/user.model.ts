@@ -67,5 +67,12 @@ userSchema.pre<HydratedDocument<IUser>>('save', async function () {
     this.password = await bcrypt.hash(this.password, saltRounds);
 });
 
+
+
+userSchema.methods.comparePassword = async function (candidate: string): Promise<boolean> {
+    // `this.password` exists only if it's selected
+    return bcrypt.compare(candidate, this.password);
+};
+
 const User = mongoose.model<IUser>('User', userSchema);
 export default User;

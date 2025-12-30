@@ -1,11 +1,11 @@
 import User from "../models/user.model";
-import { IUser, IUserDocument } from "../interfaces/user";
+import { IUser } from "../interfaces/user";
 
 
 export const UserService = {
     // find User by email
     async FindUserByEmail(email: string) {
-        return User.findOne({ email }).exec();
+        return User.findOne({ email }).select('+password').exec();
     },
 
 

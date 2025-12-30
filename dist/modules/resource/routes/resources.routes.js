@@ -11,10 +11,6 @@ const ressourceRouter = (0, express_1.Router)();
 ressourceRouter.get('/get-ressources', rateLimiter_1.rateLimiters.api, getAllRessources_1.getAllRessources);
 ressourceRouter.post('/create-ressource', rateLimiter_1.rateLimiters.api, createResource_1.createResource);
 ressourceRouter.get('/get-resource/:id', rateLimiter_1.rateLimiters.api, getResourceById_1.getResourceById);
-// ressourceRouter.put('/edit-resource', rateLimiters.api, () => console.log(123123), editResource);
-ressourceRouter.put('/edit-resource', rateLimiter_1.rateLimiters.api, (req, _res, next) => {
-    console.log('✅ route hit');
-    next();
-}, editResource_1.editResource);
+ressourceRouter.put('/edit-resource', rateLimiter_1.rateLimiters.api, editResource_1.editResource);
 exports.default = ressourceRouter;
 //# sourceMappingURL=resources.routes.js.map
