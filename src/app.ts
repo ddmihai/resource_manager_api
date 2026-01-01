@@ -7,6 +7,7 @@ import { errorHandler, notFoundHandler } from './middleware/errorHandler';
 import ressourceRouter from './modules/resource/routes/resources.routes';
 import cookieParser from 'cookie-parser';
 import userRouter from './modules/users/routes/user.routes';
+import companyRouter from './modules/company/routes/index.routes';
 const app = express();
 
 
@@ -25,6 +26,7 @@ app.get('/health', (_req, res) => {
 app.use('/api', apiRouter);
 app.use('/api/v1/resources', ressourceRouter);
 app.use('/api/v1/users', userRouter);
+app.use('/api/v1/company', companyRouter);
 
 
 app.use(notFoundHandler);

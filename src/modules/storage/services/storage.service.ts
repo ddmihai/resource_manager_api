@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import { ApiError } from "../../../middleware/errorHandler";
 import { UnitOfMeasurement } from "../../resource/interfaces/resource";
 import { IStorageBlueprint } from "../interface/storage";
@@ -37,6 +38,13 @@ export const StorageBlueprintService = {
   },
 
 
+  async GetStorageById(id: string): Promise<IStorageBlueprint | null> {
+    if (!id || typeof id !== 'string' || !mongoose.Types.ObjectId.isValid(id)) {
+      throw new ApiError('Invalid storage blueprint id', 400);
+    }
+    const storage = await StorageBlueprintModel.findById(id).lean();
+    return (storage as IStorageBlueprint) || null;
+  },
 
 
 

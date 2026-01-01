@@ -1,3 +1,4 @@
+import { Types } from "mongoose";
 import { UnitOfMeasurement } from "../../resource/interfaces/resource";
 import { StorageType } from "./storageType.enum";
 
@@ -35,19 +36,16 @@ export interface IStorage {
     _id?: string;
 
     // Ownership + world placement
-    companyId: string;      // owner (company/user)
-    locationId: string;     // where it is located
+    companyId: Types.ObjectId;      // owner (company/user)
+    locationId: Types.ObjectId;     // where it is located
+    bluePrintId: Types.ObjectId;   // references the id of the storage blueprint
 
-    blueprintKey: string;   // references IStorageBlueprint.key
-    name: string;
 
-    // What it stores
-    resourceStored: string; // Resource ObjectId (string)
     capacity: number;       // chosen at build time (in blueprint.capacityUnit)
     storedAmount: number;   // current stored amount (same unit system you decide)
 
     // Optional links (instances)
-    connectedProducers: string[]; // producer ids (strings for now)
+    connectedProducers: Types.ObjectId[]; // producer ids (strings for now)
 
     // Maintenance state (instance)
     condition: number;      // 0..100

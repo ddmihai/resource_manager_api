@@ -10,7 +10,7 @@ export const UserService = {
 
 
     // find user by id
-    async FindUserById(id: string) {
+    async FindUserById(id: string): Promise<IUser | null> {
         return User.findById(id).exec();
     },
 
