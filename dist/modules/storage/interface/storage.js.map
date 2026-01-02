@@ -1,1 +1,1 @@
-{"version":3,"file":"storage.js","sourceRoot":"","sources":["../../../../src/modules/storage/interface/storage.ts"],"names":[],"mappings":";;;AA6DA,gDAAgD;AAChD,IAAY,kBAKX;AALD,WAAY,kBAAkB;IAC1B,qDAA+B,CAAA;IAC/B,2DAAqC,CAAA;IACrC,+DAAyC,CAAA;IACzC,iEAA2C,CAAA,CAAA,4CAA4C;AAC3F,CAAC,EALW,kBAAkB,kCAAlB,kBAAkB,QAK7B"}
+{"version":3,"file":"storage.js","sourceRoot":"","sources":["../../../../src/modules/storage/interface/storage.ts"],"names":[],"mappings":""}

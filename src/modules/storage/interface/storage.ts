@@ -55,29 +55,3 @@ export interface IStorage {
     updatedAt?: Date;
 }
 
-
-
-/** Upgrades are stored separately (Option 2) */
-export enum StorageUpgradeType {
-    CAPACITY_FLAT = "capacity_flat",           // +500 (in capacityUnit)
-    CAPACITY_PERCENT = "capacity_percent",     // +10 (%)
-    INPUT_RATE_PERCENT = "input_rate_percent", // +20 (%)
-    DISCHARGE_REDUCTION = "discharge_reduction"// -0.01 (absolute rate), or % if you prefer
-}
-
-export interface IStorageUpgrade {
-    _id?: string;
-
-    companyId: string;  // for security + fast queries
-    storageId: string;  // Storage _id
-
-    type: StorageUpgradeType;
-    value: number;      // depends on type (flat amount, percent, etc.)
-
-    // optional costs (use later when you add economy)
-    costPoints?: number;
-    costMoney?: number;
-
-    createdAt?: Date;
-    updatedAt?: Date;
-}

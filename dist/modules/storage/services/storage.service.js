@@ -1,7 +1,11 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.StorageBlueprintService = void 0;
 exports.assertEnumValue = assertEnumValue;
+const mongoose_1 = __importDefault(require("mongoose"));
 const errorHandler_1 = require("../../../middleware/errorHandler");
 const resource_1 = require("../../resource/interfaces/resource");
 const storageType_enum_1 = require("../interface/storageType.enum");
@@ -23,6 +27,13 @@ exports.StorageBlueprintService = {
     // get storage by unic key
     async GetStorageByKey(key) {
         const storage = await StorageBluePrint_model_1.StorageBlueprintModel.findOne({ key }).lean();
+        return storage || null;
+    },
+    async GetStorageById(id) {
+        if (!id || typeof id !== 'string' || !mongoose_1.default.Types.ObjectId.isValid(id)) {
+            throw new errorHandler_1.ApiError('Invalid storage blueprint id', 400);
+        }
+        const storage = await StorageBluePrint_model_1.StorageBlueprintModel.findById(id).lean();
         return storage || null;
     },
     /**

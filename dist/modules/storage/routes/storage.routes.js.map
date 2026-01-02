@@ -1,1 +1,1 @@
-{"version":3,"file":"storage.routes.js","sourceRoot":"","sources":["../../../../src/modules/storage/routes/storage.routes.ts"],"names":[],"mappings":""}
+{"version":3,"file":"storage.routes.js","sourceRoot":"","sources":["../../../../src/modules/storage/routes/storage.routes.ts"],"names":[],"mappings":";;AAAA,qCAAiC;AACjC,uFAAwE;AACxE,kFAA+E;AAC/E,iEAA+D;AAG/D,MAAM,aAAa,GAAG,IAAA,gBAAM,GAAE,CAAC;AAG/B,aAAa,CAAC,IAAI,CAAC,mBAAmB,EAAE,0BAAY,CAAC,GAAG,EAAE,iCAAS,EAAE,+CAAsB,CAAC,CAAC;AAK7F,kBAAe,aAAa,CAAC"}

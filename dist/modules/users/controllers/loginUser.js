@@ -8,6 +8,7 @@ const logger_1 = require("../../../utils/logger");
 const User_service_1 = require("../services/User.service");
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
+const env_1 = require("../../../config/env");
 const loginController = async (req, res, next) => {
     try {
         const { email, password } = req.body;
@@ -34,7 +35,7 @@ const loginController = async (req, res, next) => {
             _id: user._id,
             role: user.role,
             email: user.email
-        }, process.env.JWT_SECRET, { expiresIn: '1d' });
+        }, env_1.env.JWT_ACCESS_TOKEN_SECRET, { expiresIn: '1d' });
         // setup the cookies
         res.cookie('token', token, {
             httpOnly: true,
