@@ -19,7 +19,10 @@ const swagger_1 = require("./docs/swagger");
 const app = (0, express_1.default)();
 app.set('trust proxy', 1);
 app.use((0, helmet_1.default)());
-app.use((0, cors_1.default)());
+app.use((0, cors_1.default)({
+    origin: "http://localhost:5174", // exact frontend origin
+    credentials: true, // allow cookies
+}));
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
 app.use((0, cookie_parser_1.default)());

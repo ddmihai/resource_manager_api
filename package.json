@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "tsx watch src/server.ts",
     "build": "rimraf dist && tsc -p tsconfig.json",
+    "publish": "npm run build && git add . && git commit -m 'Auto publish' && git push origin main",
     "start": "node dist/server.js",
     "lint": "eslint \"src/**/*.{ts,tsx}\"",
     "lint:fix": "npm run lint -- --fix",

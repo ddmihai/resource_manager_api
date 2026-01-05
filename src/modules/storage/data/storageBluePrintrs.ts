@@ -4,7 +4,6 @@ import { UnitOfMeasurement } from "../../resource/interfaces/resource";
 import { StorageType } from "../interface/storageType.enum";
 import { IStorageBlueprint } from "../interface/storage";
 
-
 export const STORAGE_BLUEPRINTS_SEED: IStorageBlueprint[] = [
     // ──────────────────────────────
     // WAREHOUSES (SOLIDS)
@@ -17,12 +16,10 @@ export const STORAGE_BLUEPRINTS_SEED: IStorageBlueprint[] = [
         capacityUnit: UnitOfMeasurement.TON,
         minCapacity: 500,
         maxCapacity: 5000,
-        allowedUnits: [
-            UnitOfMeasurement.TON,
-            UnitOfMeasurement.KG,
-            UnitOfMeasurement.UNIT,
-        ],
+        allowedUnits: [UnitOfMeasurement.TON, UnitOfMeasurement.KG, UnitOfMeasurement.UNIT],
         connectionLimit: 3,
+        maxInputPerHour: 18000,
+        dischargeRatePerHour: 30000,
         buildCost: 12000,
         maintenanceCostPerDay: 20,
         wearThreshold: 10,
@@ -35,12 +32,10 @@ export const STORAGE_BLUEPRINTS_SEED: IStorageBlueprint[] = [
         capacityUnit: UnitOfMeasurement.TON,
         minCapacity: 3000,
         maxCapacity: 20000,
-        allowedUnits: [
-            UnitOfMeasurement.TON,
-            UnitOfMeasurement.KG,
-            UnitOfMeasurement.UNIT,
-        ],
+        allowedUnits: [UnitOfMeasurement.TON, UnitOfMeasurement.KG, UnitOfMeasurement.UNIT],
         connectionLimit: 6,
+        maxInputPerHour: 72000,
+        dischargeRatePerHour: 120000,
         buildCost: 65000,
         maintenanceCostPerDay: 65,
         wearThreshold: 10,
@@ -59,6 +54,8 @@ export const STORAGE_BLUEPRINTS_SEED: IStorageBlueprint[] = [
         maxCapacity: 3000,
         allowedUnits: [UnitOfMeasurement.TON, UnitOfMeasurement.KG],
         connectionLimit: 2,
+        maxInputPerHour: 10800,
+        dischargeRatePerHour: 18000,
         buildCost: 9000,
         maintenanceCostPerDay: 15,
         wearThreshold: 10,
@@ -73,6 +70,8 @@ export const STORAGE_BLUEPRINTS_SEED: IStorageBlueprint[] = [
         maxCapacity: 15000,
         allowedUnits: [UnitOfMeasurement.TON, UnitOfMeasurement.KG],
         connectionLimit: 4,
+        maxInputPerHour: 54000,
+        dischargeRatePerHour: 90000,
         buildCost: 40000,
         maintenanceCostPerDay: 45,
         wearThreshold: 10,
@@ -91,6 +90,8 @@ export const STORAGE_BLUEPRINTS_SEED: IStorageBlueprint[] = [
         maxCapacity: 15000,
         allowedUnits: [UnitOfMeasurement.LITER],
         connectionLimit: 2,
+        maxInputPerHour: 54000,
+        dischargeRatePerHour: 90000,
         buildCost: 18000,
         maintenanceCostPerDay: 30,
         wearThreshold: 10,
@@ -105,6 +106,8 @@ export const STORAGE_BLUEPRINTS_SEED: IStorageBlueprint[] = [
         maxCapacity: 120000,
         allowedUnits: [UnitOfMeasurement.LITER],
         connectionLimit: 4,
+        maxInputPerHour: 432000,
+        dischargeRatePerHour: 720000,
         buildCost: 90000,
         maintenanceCostPerDay: 90,
         wearThreshold: 10,
@@ -123,7 +126,8 @@ export const STORAGE_BLUEPRINTS_SEED: IStorageBlueprint[] = [
         maxCapacity: 1000,
         allowedUnits: [UnitOfMeasurement.KWH],
         connectionLimit: 2,
-        dischargeRatePerHour: 0.03,
+        maxInputPerHour: 3600,
+        dischargeRatePerHour: 0.03, // keep as your battery self-discharge value
         buildCost: 20000,
         maintenanceCostPerDay: 15,
         wearThreshold: 10,
@@ -138,7 +142,8 @@ export const STORAGE_BLUEPRINTS_SEED: IStorageBlueprint[] = [
         maxCapacity: 20000,
         allowedUnits: [UnitOfMeasurement.KWH],
         connectionLimit: 6,
-        dischargeRatePerHour: 0.012,
+        maxInputPerHour: 72000,
+        dischargeRatePerHour: 0.012, // keep as your battery self-discharge value
         buildCost: 180000,
         maintenanceCostPerDay: 80,
         wearThreshold: 10,
@@ -157,6 +162,8 @@ export const STORAGE_BLUEPRINTS_SEED: IStorageBlueprint[] = [
         maxCapacity: 5000,
         allowedUnits: [UnitOfMeasurement.KG],
         connectionLimit: 2,
+        maxInputPerHour: 18000,
+        dischargeRatePerHour: 30000,
         buildCost: 45000,
         maintenanceCostPerDay: 35,
         wearThreshold: 10,
@@ -171,6 +178,8 @@ export const STORAGE_BLUEPRINTS_SEED: IStorageBlueprint[] = [
         maxCapacity: 30000,
         allowedUnits: [UnitOfMeasurement.KG],
         connectionLimit: 4,
+        maxInputPerHour: 108000,
+        dischargeRatePerHour: 180000,
         buildCost: 220000,
         maintenanceCostPerDay: 120,
         wearThreshold: 10,
